@@ -26,4 +26,18 @@ public class Graph
         if(!_adjacencyLists[u].Contains(v)) _adjacencyLists[u].Add(v);
         if(!_adjacencyLists[v].Contains(u)) _adjacencyLists[v].Add(u);
     }
+
+    public override string ToString()
+    {
+        string returnString = $"Graph{System.Environment.NewLine}Nodes: {_nodes}{System.Environment.NewLine}";
+        for(int i = 0; i < _nodes; i++) {
+            returnString += $"Node{i}: [";
+            for(int j = 0; j < _adjacencyLists[i].Count; j ++) {
+                returnString += _adjacencyLists[i][j];
+                if (j < _adjacencyLists[i].Count - 1) returnString += ",";
+            }
+            returnString += $"]" + System.Environment.NewLine;
+        }
+        return returnString;
+    }
 }

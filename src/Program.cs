@@ -11,6 +11,7 @@ internal class Program
         graph.AddEdge(1, 4);
 
         string outputPath = Path.Combine(Environment.CurrentDirectory, "graphs/graph0.xml");
+        Console.WriteLine(graph);
         WriteGraphToPath(graph, outputPath);
     }
 
