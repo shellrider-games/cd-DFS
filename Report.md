@@ -20,24 +20,22 @@ DFS has a time complexity of O(V+E) where V is the number of nodes and E is the 
 ### Implementation Detail
 
 #### Implementation Logic Explanation:
-(Explain how you implement the idea step by step compactly and clearly.)
+I implemented DFS with help of a Graph data structure using adjacency lists.
+This allows me to use a stack to keep track of the nodes to visit and a boolean array of length n where n = number of nodes to keep track of the nodes I already visited. To begin I put the start node in the stack. Then in every iteration I pop the node from the stack and set it to visited in the boolean array and put it into my visiting order list.
+Then I put all neighbours that have not been visited onto the stack. Then I go to the next iteration until the stack is empty.
+At the end I return the list of the nodes in order they have been visited.
 
 #### Achievements:
-(List down and explain what achievements you are proud of (e.g., features, techniques, etc.) in the project. Please explain in detail.)
-1. Item
-2. Item, and so forth
+I do not think this project includes any special achievements other than I could implement it pretty fast. 
 
 ### Learned Knowledge from the Project
 
 #### Major Challenges and Solutions:
-(List down and explain the major challenges. Did you solve it? How? Please explain in detail.)
-1. Item
-2. Item, and so forth
+1. Reading the xml data
+For me the biggest challenge of the project was to read in my xml data and parse it to a graph. I could not use the serializer since I do not have a 0 argument constructor in my Graph class, so I figured out a data schema myself. Reading in that xml file felt arcane to me. In future projects I will probably go back to .json files, which I understand better.
 
 #### Minor Challenges and Solutions:
-(List down and explain the minor challenges. Did you solve it? How? Please explain in detail.)
-1. Item
-2. Item, and so forth
+
 
 ### Reflections on the Own Project:
 (List down and explain what you could improve and add if you have more time.)
