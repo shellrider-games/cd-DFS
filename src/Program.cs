@@ -9,6 +9,11 @@ internal class Program
             inputPath = Path.GetFullPath(args[0]);
         }
 
+        uint startNode = 0;
+        if(args.Length > 1) {
+            startNode = uint.Parse(args[1]);
+        }
+
         if(!File.Exists(inputPath)) {
             var previousColor = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Red;
@@ -19,7 +24,7 @@ internal class Program
 
         Graph? graph = inputPath is not null?ReadGraphFromFile(inputPath):null;
         if(graph is not null) { 
-            List<uint> graphTraversal = graph.DFS(0);
+            List<uint> graphTraversal = graph.DFS(startNode);
             WriteOutputFile(graphTraversal, inputPath + ".out");
         } else {
             var previousColor = Console.ForegroundColor;
@@ -27,8 +32,6 @@ internal class Program
             Console.Error.WriteLine($"Error while parsing graph. Please make sure the file format of the given graph is correct.");
             Console.ForegroundColor = previousColor;
         }
-
-        
     }
 
     private static void WriteOutputFile(List<uint> traversalOrder, string path)
