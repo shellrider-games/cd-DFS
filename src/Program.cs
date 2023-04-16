@@ -1,7 +1,5 @@
 ﻿using System.Xml;
 using System.Diagnostics;
-using System.Linq;
-using System.Xml.Linq;
 
 internal class Program
 {
@@ -21,6 +19,19 @@ internal class Program
 
         Debug.Assert(readGraph.Equals(graph1));
         Console.WriteLine(readGraph);
+
+        List<uint> graphTraversal = graph1.DFS(0);
+
+        Console.WriteLine("DFS order:");
+        for(int i = 0; i < graphTraversal.Count; i++)
+        {
+            Console.Write(graphTraversal[i]);
+            if(i < graphTraversal.Count - 1) {
+                Console.Write(",");
+            } else {
+                Console.WriteLine();
+            }
+        }
     }
 
     //This method writes a given graph to an XML file at the given path.
