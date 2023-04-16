@@ -1,5 +1,4 @@
 ﻿using System.Xml;
-using System.Diagnostics;
 
 internal class Program
 {
@@ -19,9 +18,17 @@ internal class Program
         }
 
         Graph? graph = inputPath is not null?ReadGraphFromFile(inputPath):null;
-        List<uint> graphTraversal = graph.DFS(0);
+        if(graph is not null) { 
+            List<uint> graphTraversal = graph.DFS(0);
+            WriteOutputFile(graphTraversal, inputPath + ".out");
+        } else {
+            var previousColor = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Error.WriteLine($"Error while parsing graph. Please make sure the file format of the given graph is correct.");
+            Console.ForegroundColor = previousColor;
+        }
 
-        WriteOutputFile(graphTraversal, inputPath + ".out");
+        
     }
 
     private static void WriteOutputFile(List<uint> traversalOrder, string path)

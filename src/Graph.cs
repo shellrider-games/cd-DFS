@@ -31,6 +31,8 @@ public class Graph
         if (!_adjacencyLists[v].Contains(u)) _adjacencyLists[v].Add(u);
     }
 
+
+    //Created this method for easy debugging
     public override string ToString()
     {
         string returnString = $"Graph{System.Environment.NewLine}Nodes: {_nodes}{System.Environment.NewLine}";
@@ -47,6 +49,7 @@ public class Graph
         return returnString;
     }
 
+    //Graphs are equal even if the adjacency lists are stored in a diffent order
     public bool Equals(Graph other)
     {
         if (other.Nodes != _nodes) return false;
@@ -61,6 +64,7 @@ public class Graph
         return true;
     }
 
+    //Starts a DFS at a specified node and returns the visited nodes in Order as a List<uint>
     public List<uint> DFS(uint startNode)
     {
         List<uint> visitOrder = new List<uint>();
