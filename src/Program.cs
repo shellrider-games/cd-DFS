@@ -58,11 +58,9 @@ internal class Program
     {
         Graph? returnGraph = null;
 
-
         //Create an XmlDocument and load the file at the given path.
         var file = new XmlDocument();
         file.Load(path);
-
 
         //Select the "nodes" element from the XML file and parse it as an unsigned integer.
         //If the "nodes" element doesn't exist or can't be parsed as an unsigned integer, return null.
@@ -77,7 +75,6 @@ internal class Program
         var adjacencyListNodes = file.SelectNodes("/graph/adjacencyLists/adjacencyList");
         if (adjacencyListNodes == null || adjacencyListNodes.Count != nodes) return null;
 
-
         //Loop over each node in the graph.
         for (int i = 0; i < nodes; i++)
         {
@@ -89,7 +86,6 @@ internal class Program
             {
                 foreach (XmlNode edgeNode in edgeNodes)
                 {
-
                     //Parse the text of the "edge" node as an unsigned integer.
                     //If the text can't be parsed as an unsigned integer, return null.
                     if (uint.TryParse(edgeNode.InnerText, out uint adjacentNodeIndex))
