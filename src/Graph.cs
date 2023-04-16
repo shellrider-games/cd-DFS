@@ -40,4 +40,19 @@ public class Graph
         }
         return returnString;
     }
+
+    public bool Equals(Graph other)
+    {
+        if(other.Nodes != _nodes) return false;
+        for(int i = 0; i < _nodes; i++)
+        {
+            if(!(other.AdjacencyLists[i].Count == _adjacencyLists[i].Count)) return false;
+            for(int j = 0; j < _adjacencyLists[i].Count; j++)
+            {
+                if(!other.AdjacencyLists[i].Contains(_adjacencyLists[i][j])) return false;
+            }
+        }
+        return true;
+    }
+
 }
