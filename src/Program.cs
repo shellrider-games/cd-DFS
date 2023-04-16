@@ -5,32 +5,37 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        Graph graph1 = new Graph(5);
-        graph1.AddEdge(0, 1);
-        graph1.AddEdge(0, 2);
-        graph1.AddEdge(1, 3);
-        graph1.AddEdge(1, 4);
+        string? inputPath = null;
+        if(args.Length > 0) {
+            inputPath = Path.GetFullPath(args[0]);
+        }
 
-        string outputPath = Path.Combine(Environment.CurrentDirectory, $"graphs{Path.PathSeparator}graph0.xml");
-        Console.WriteLine(graph1);
+        if(!File.Exists(inputPath)) {
+            var previousColor = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Error.WriteLine($"Could not find file: {inputPath}, please make sure the file exists and can be read by the program.");
+            Console.ForegroundColor = previousColor;
+            return;
+        }
 
-        WriteGraphToPath(graph1, outputPath);
-        Graph? readGraph = ReadGraphFromFile(outputPath);
+        Graph? graph = inputPath is not null?ReadGraphFromFile(inputPath):null;
+        List<uint> graphTraversal = graph.DFS(0);
 
-        Debug.Assert(readGraph.Equals(graph1));
-        Console.WriteLine(readGraph);
+        WriteOutputFile(graphTraversal, inputPath + ".out");
+    }
 
-        List<uint> graphTraversal = graph1.DFS(0);
-
-        Console.WriteLine("DFS order:");
-        for(int i = 0; i < graphTraversal.Count; i++)
+    private static void WriteOutputFile(List<uint> traversalOrder, string path)
+    {
+        using(StreamWriter writer = File.CreateText(path))
         {
-            Console.Write(graphTraversal[i]);
-            if(i < graphTraversal.Count - 1) {
-                Console.Write(",");
-            } else {
-                Console.WriteLine();
+            for(int i = 0; i < traversalOrder.Count; i++)
+            {
+                writer.Write(traversalOrder[i]);
+                if(i < traversalOrder.Count -1) {
+                    writer.Write(",");
+                }
             }
+            writer.Close();
         }
     }
 
