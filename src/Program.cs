@@ -23,31 +23,47 @@ internal class Program
         Console.WriteLine(readGraph);
     }
 
+    //This method writes a given graph to an XML file at the given path.
     private static void WriteGraphToPath(Graph graph, string path)
     {
+        //Create a new file stream and XML writer for the given path.
         FileStream fs = File.Create(path);
         XmlWriter xml = XmlWriter.Create(fs,
             new XmlWriterSettings { Indent = true }
         );
+
+        //Start writing the XML document.
         xml.WriteStartDocument();
 
+        //Write the root element for the graph.
         xml.WriteStartElement("graph");
+        //Write the number of nodes in the graph as a child element.
         xml.WriteElementString("nodes", graph.Nodes.ToString());
+        //Write the adjacency lists for each node as a child element.
         xml.WriteStartElement("adjacencyLists");
 
+
+        //Loop over each node in the graph.
         for (int i = 0; i < graph.Nodes; i++)
         {
+            //Start writing the adjacency list for the current node
             xml.WriteStartElement("adjacencyList");
+            //Loop over each adjacent node for the current node.
             for (int j = 0; j < graph.AdjacencyLists[i].Count; j++)
             {
+                //Write the index of the adjacent node as a child element.
                 xml.WriteElementString("edge", graph.AdjacencyLists[i][j].ToString());
             }
+            //Finish writing the adjacency list for the current node.
             xml.WriteEndElement();
         }
 
+        //Finish writing the adjacency lists for all nodes
         xml.WriteEndElement();
+        //Finish writing the root element for the graph.
         xml.WriteEndElement();
 
+        //Close the XML writer and file stream.
         xml.Close();
         fs.Close();
     }
