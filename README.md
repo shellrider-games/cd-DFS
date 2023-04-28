@@ -30,4 +30,4 @@ Where [input file] is the path to the XML file containing the graph and [start n
 The program will output the traversal order to a file with the same name as the input file, but with ".out" appended to the end.
 ## License
 
-This program is licensed under the MIT License. See the LICENSE file for details.
+This program is licensed under the BSD 3-Clause License. See the LICENSE file for details.
