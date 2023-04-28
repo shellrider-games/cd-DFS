@@ -38,11 +38,9 @@ For me the biggest challenge of the project was to read in my xml data and parse
 
 
 ### Reflections on the Own Project:
-(List down and explain what you could improve and add if you have more time.)
-1. Item
-2. Item, and so forth
+
+Next time I would focus on creating a proper usecase rather than I/O parsing
 
 ### Reflections on the Projects learned during the Presentation:
-(List down and explain what you have learned from your colleague’s codes and what you should pay attention to when writing codes next time.)
-1. Item
-2. Item, and so forth
+
+I learned about algorithms to find circles in graphs other than DFS.
